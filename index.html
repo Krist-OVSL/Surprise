@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>System Scan</title>
 
 <style>
 body{
   margin:0;
   background:black;
-  color:#00ff00;
-  font-family:monospace;
+  color:white;
+  font-family:Arial,Helvetica,sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
+  text-align:center;
   overflow:hidden;
 }
 
 #scan{
-  font-size:5vw;
+  font-size:6vw;
 }
 
 #troll{
   display:none;
   font-size:12vw;
-  color:red;
-  text-align:center;
-  animation:flash 0.5s infinite, shake 0.2s infinite;
+  animation:rainbow 1s infinite, shake 0.2s infinite;
 }
 
-@keyframes flash{
-  0%{opacity:1}
-  50%{opacity:0}
-  100%{opacity:1}
+@keyframes rainbow{
+  0%{color:red}
+  20%{color:orange}
+  40%{color:yellow}
+  60%{color:lime}
+  80%{color:cyan}
+  100%{color:magenta}
 }
 
 @keyframes shake{
@@ -42,25 +44,49 @@ body{
   75%{transform:translate(5px,5px)}
   100%{transform:translate(0,0)}
 }
+
+.progress{
+  width:60%;
+  height:10px;
+  background:#333;
+  margin:auto;
+  margin-top:20px;
+}
+
+.bar{
+  height:100%;
+  width:0%;
+  background:lime;
+  animation:load 2s linear forwards;
+}
+
+@keyframes load{
+  from{width:0%}
+  to{width:100%}
+}
 </style>
 </head>
 
 <body>
 
-<div id="scan">Scanning device...</div>
-<div id="troll">YOU'RE GAY</div>
+<div id="scan">
+  Scanning device...
+  <div class="progress">
+    <div class="bar"></div>
+  </div>
+</div>
+
+<h1 id="troll">YOU'RE GAY</h1>
 
 <audio id="beep" loop>
 <source src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Beep-09.wav">
 </audio>
 
 <script>
-setTimeout(()=>{
+setTimeout(function(){
   document.getElementById("scan").style.display="none";
   document.getElementById("troll").style.display="block";
-
-  let sound=document.getElementById("beep");
-  sound.play();
+  document.getElementById("beep").play();
 
   if(navigator.vibrate){
     setInterval(()=>navigator.vibrate(200),400);
