@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>System Scan</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  color:#00ff00;
+  font-family:monospace;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+}
+
+#scan{
+  font-size:5vw;
+}
+
+#troll{
+  display:none;
+  font-size:12vw;
+  color:red;
+  text-align:center;
+  animation:flash 0.5s infinite, shake 0.2s infinite;
+}
+
+@keyframes flash{
+  0%{opacity:1}
+  50%{opacity:0}
+  100%{opacity:1}
+}
+
+@keyframes shake{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(5px,-5px)}
+  50%{transform:translate(-5px,5px)}
+  75%{transform:translate(5px,5px)}
+  100%{transform:translate(0,0)}
+}
+</style>
+</head>
+
+<body>
+
+<div id="scan">Scanning device...</div>
+<div id="troll">YOU'RE GAY</div>
+
+<audio id="beep" loop>
+<source src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Beep-09.wav">
+</audio>
+
+<script>
+setTimeout(()=>{
+  document.getElementById("scan").style.display="none";
+  document.getElementById("troll").style.display="block";
+
+  let sound=document.getElementById("beep");
+  sound.play();
+
+  if(navigator.vibrate){
+    setInterval(()=>navigator.vibrate(200),400);
+  }
+
+},2000);
+</script>
+
+</body>
+</html>
